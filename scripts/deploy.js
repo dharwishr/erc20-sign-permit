@@ -3,8 +3,8 @@ const hre = require("hardhat");
 
 async function main() {
 
-  const Contract = await hre.ethers.getContractFactory("ERC20Permit.sol");
-  const contract = await Contract.deploy("ERC20Permit-Test", "EPT");
+  const Contract = await hre.ethers.getContractAt("ERC20Permit");
+  const contract = await Contract.deploy("ERC20Test");
 
   await contract.deployed();
 
