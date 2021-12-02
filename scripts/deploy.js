@@ -2,13 +2,14 @@
 const hre = require("hardhat");
 
 async function main() {
+  
 
-  const Contract = await hre.ethers.getContractAt("ERC20Permit");
-  const contract = await Contract.deploy("ERC20Test");
+  const TestPermit = await hre.ethers.getContractFactory("TestPermit");
+  const testPermit = await TestPermit.deploy("TestERC", "TRC");
 
-  await contract.deployed();
+  await testPermit.deployed();
 
-  console.log("Greeter deployed to:", contract.address);
+  console.log("Greeter deployed to:", testPermit.address);
 }
 
 main()
