@@ -8,9 +8,8 @@ import { toUtf8Bytes } from "@ethersproject/strings";
 import { solidityPack } from "ethers/lib/utils";
 import { ecrecover, ecsign } from "ethereumjs-util";
 import TestPermit from "./artifacts/contracts/TestPermit.sol/TestPermit.json";
-// const fs = require("fs");
-// const privateKey = fs.readFileSync(".secrets/.secret").toString().trim();
-const privateKey = "45553064b1ce64a8d1ec0bbbc94a32e0ca25b1d8e3c3af1d01c5980d377f9f00"
+require('dotenv').config();
+const privateKey = process.env.PRIVATE_KEY;
 
 function App()  {
 
@@ -38,6 +37,7 @@ function App()  {
       const signer = provider.getSigner();
       // const wallet = new ethers.Wallet(privateKey, new ethers.providers.Web3Provider(window.ethereum, "any"));
       const spender = "0x76f2e7c55CcC64B634c4698Ce13932fc5a478075";
+      const spender1 = "0x76f2e7c55CcC64B634c4698Ce13932fc5a478071";
       const contract = new ethers.Contract(tokenAddress, TestPermit.abi , signer);
       const result = await signERC2612Permit(signer, tokenAddress, senderAddress, spender, value);
       console.log(result);
